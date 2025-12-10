@@ -4,6 +4,17 @@ import { Reveal } from './Reveal';
 import { Instagram, Mail, ArrowDown } from 'lucide-react';
 
 export const Hero: React.FC = () => {
+    const images = [
+        'images/work1.jpg',
+        'images/work2.jpg',
+        'images/video2-thumb.jpg'
+    ];
+    const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+
+    const handleImageClick = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    };
+
     const scrollToAbout = () => {
         const element = document.getElementById('about');
         element?.scrollIntoView({ behavior: 'smooth' });
@@ -70,24 +81,28 @@ export const Hero: React.FC = () => {
                             <div className="absolute inset-0 border border-slate-blue/20 translate-x-3 translate-y-3 md:translate-x-5 md:translate-y-5"></div>
 
                             {/* Image Container */}
-                            <div className="relative w-full h-full overflow-hidden bg-white shadow-xl rotate-[2deg] hover:rotate-0 transition-transform duration-700 ease-out">
+                            <div
+                                className="relative w-full h-full overflow-hidden bg-white shadow-xl rotate-[2deg] hover:rotate-0 transition-transform duration-700 ease-out cursor-pointer"
+                                onClick={handleImageClick}
+                            >
                                 <img
-                                    src="images/work1.jpg"
+                                    src={images[currentImageIndex]}
                                     alt="Kajal Goyal"
                                     className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"
                                 />
                                 {/* Overlay Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-blue/10 to-transparent opacity-50"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-blue/10 to-transparent opacity-50 pointer-events-none"></div>
                             </div>
                         </div>
                     </Reveal>
                 </div>
 
+
                 {/* Scroll Down Indicator */}
                 <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float cursor-pointer z-30 opacity-70 hover:opacity-100 transition-opacity" onClick={scrollToAbout}>
                     <ArrowDown className="w-6 h-6 text-slate-blue" />
                 </div>
-            </div>
-        </SectionWrapper>
+            </div >
+        </SectionWrapper >
     );
 };
