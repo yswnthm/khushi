@@ -20,7 +20,7 @@ const App: React.FC = () => {
 
           {/* Decorative Background Text (Name) */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none mix-blend-multiply opacity-[0.04]">
-            <span className="font-serif text-[15vw] md:text-[18vw] leading-none text-slate-blue whitespace-nowrap tracking-tight">
+            <span className="font-serif text-[12vw] md:text-[14vw] leading-none text-slate-blue whitespace-nowrap tracking-tight">
               KAJAL GOYAL
             </span>
           </div>
