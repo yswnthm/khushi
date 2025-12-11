@@ -1,2 +1,2 @@
 # kushi
-work, kushi's ugc portfolio
+work, khushi's ugc portfolio
