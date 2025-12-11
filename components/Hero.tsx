@@ -35,14 +35,7 @@ export const Hero: React.FC = () => {
 
                 {/* Central Focus */}
                 <div className="relative z-10 flex flex-col items-center">
-                    {/* Floating Script Title */}
-                    <div className="absolute -top-16 md:-top-24 right-0 md:-right-12 z-30 mix-blend-multiply pointer-events-none">
-                        <Reveal delay={800} direction="none">
-                            <span className="font-script text-6xl md:text-8xl text-icon-blue rotate-12 block drop-shadow-sm">
-                                Content Creator
-                            </span>
-                        </Reveal>
-                    </div>
+
 
                     {/* Image Container */}
                     <Reveal delay={400} direction="none">
