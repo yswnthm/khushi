@@ -19,9 +19,10 @@ export const Hero: React.FC = () => {
 
     // Animation Transforms
 
-    // "Garg" Text: Moves up and fades out much earlier
-    const gargY = useTransform(scrollYProgress, [0, 0.25], ["-50%", "-300%"]);
-    const gargOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+    // "Garg" Text: Moves up and fades out
+    // Adjusted to move less distance and separate later to reduce visual gap
+    const gargY = useTransform(scrollYProgress, [0, 0.3], ["-50%", "-150%"]);
+    const gargOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
     // "KHUSHI" Text: Stays fixed (mimicked by not moving, or slight parallax if desired)
     // The user said "stays fixed in place".
@@ -29,10 +30,11 @@ export const Hero: React.FC = () => {
     // However, we want it to be covered by the image.
 
     // Image/Product: Slides up from bottom
-    const imageY = useTransform(scrollYProgress, [0.15, 0.55], ["100vh", "0vh"]);
+    // Starts much earlier to close the gap with the exiting text
+    const imageY = useTransform(scrollYProgress, [0.05, 0.45], ["100vh", "0vh"]);
     // Reduce scale effect on the whole section as it might look weird on text, keep it subtle or remove.
     // Let's keep it very 1:1 for the section content to avoid blurriness.
-    const imageOpacity = useTransform(scrollYProgress, [0.15, 0.3], [0, 1]);
+    const imageOpacity = useTransform(scrollYProgress, [0.05, 0.3], [0, 1]);
 
     // Scroll Indicator Opacity - Fade out instantly
     const scrollIndicatorOpacity = useTransform(scrollYProgress, [0, 0.05], [1, 0]);
