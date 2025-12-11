@@ -94,20 +94,20 @@ export const Hero: React.FC = () => {
                         }}
                     >
                         <Reveal delay={200}>
-                            <h1 className={`font-serif text-[18vw] md:text-[22vw] leading-none ${isHovered ? 'text-slate-blue/5' : 'text-[#D8C8B0]'} transition-colors duration-700 opacity-0 animate-fade-in select-none relative`}>
+                            <h1 className="font-serif text-[18vw] md:text-[22vw] leading-none text-[#D8C8B0] transition-colors duration-700 opacity-0 animate-fade-in select-none relative">
                                 KHUSHI
-                                {/* Cursive Overlay */}
-                                <span
-                                    className="absolute top-1/2 left-1/2 font-script text-[10vw] md:text-[8vw] text-warm-taupe/90 whitespace-nowrap z-10"
-                                    style={{
-                                        transform: `translate(-50%, calc(-50% - ${gargOffset}px))`,
-                                        transition: 'transform 0.15s ease-out'
-                                    }}
-                                >
-                                    Garg
-                                </span>
                             </h1>
                         </Reveal>
+                        {/* Cursive Overlay - Independent of hover state */}
+                        <span
+                            className="absolute top-1/2 left-1/2 font-script text-[10vw] md:text-[8vw] text-warm-taupe/90 whitespace-nowrap z-10"
+                            style={{
+                                transform: `translate(-50%, calc(-50% - ${gargOffset}px))`,
+                                transition: 'transform 0.15s ease-out'
+                            }}
+                        >
+                            Garg
+                        </span>
                     </div>
 
 
