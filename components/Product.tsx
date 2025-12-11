@@ -22,7 +22,7 @@ export const Product: React.FC = () => {
     };
 
     return (
-        <SectionWrapper id="product" pageNumber="02" className="items-center justify-center overflow-hidden relative z-10 bg-pastel-mist">
+        <SectionWrapper id="product" pageNumber="02" className="items-center justify-center overflow-hidden relative z-10">
             <div className="relative w-full h-full flex flex-col items-center justify-center">
 
                 {/* Central Focus */}

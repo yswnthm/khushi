@@ -69,7 +69,7 @@ export const Hero: React.FC = () => {
                     style={{ y: imageY, opacity: imageOpacity }}
                     className="absolute inset-0 z-30 flex items-center justify-center pointer-events-auto"
                 >
-                    <div className="w-full h-full relative bg-pastel-mist">
+                    <div className="w-full h-full relative">
                         <Product />
                     </div>
                 </motion.div>
