@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
                 {/* Decorative Background Text (Name) - Subtle & Large */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none mix-blend-multiply opacity-[0.03]">
                     <span className="font-serif text-[15vw] leading-none text-slate-blue whitespace-nowrap tracking-tight">
-                        KAJAL GOYAL
+                        KHUSHI
                     </span>
                 </div>
 
@@ -44,7 +44,7 @@ export const Hero: React.FC = () => {
 
                     <Reveal delay={400}>
                         <h1 className="font-serif text-4xl md:text-6xl tracking-wide uppercase text-slate-blue font-light leading-tight">
-                            Kajal <br className="hidden md:block" /> Goyal
+                            Khushi
                         </h1>
                     </Reveal>
 
@@ -57,13 +57,13 @@ export const Hero: React.FC = () => {
 
                     <Reveal delay={800}>
                         <div className="flex items-center space-x-6 text-icon-blue/80 pt-4">
-                            <a href="https://instagram.com/kay.life173" target="_blank" rel="noopener noreferrer" className="group flex items-center space-x-2 transition-all duration-300 hover:text-warm-taupe">
+                            <a href="#" target="_blank" rel="noopener noreferrer" className="group flex items-center space-x-2 transition-all duration-300 hover:text-warm-taupe">
                                 <span className="transition-all duration-300">
                                     <Instagram className="w-5 h-5 stroke-[1.5]" />
                                 </span>
                                 <span className="text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300 hidden md:inline-block">Instagram</span>
                             </a>
-                            <a href="mailto:Kay.life173@gmail.com" className="group flex items-center space-x-2 transition-all duration-300 hover:text-warm-taupe">
+                            <a href="mailto:hello@example.com" className="group flex items-center space-x-2 transition-all duration-300 hover:text-warm-taupe">
                                 <span className="transition-all duration-300">
                                     <Mail className="w-5 h-5 stroke-[1.5]" />
                                 </span>
@@ -87,7 +87,7 @@ export const Hero: React.FC = () => {
                             >
                                 <img
                                     src={images[currentImageIndex]}
-                                    alt="Kajal Goyal"
+                                    alt="Khushi"
                                     className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"
                                 />
                                 {/* Overlay Gradient */}
