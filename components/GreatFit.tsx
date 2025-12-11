@@ -4,7 +4,7 @@ import { Reveal } from './Reveal';
 
 export const GreatFit: React.FC = () => {
     return (
-        <SectionWrapper id="why-fit" pageNumber="05" bgText="VISION">
+        <SectionWrapper id="why-fit" pageNumber="06" bgText="VISION">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center min-h-[60vh]">
                 <div className="relative">
                     <Reveal>

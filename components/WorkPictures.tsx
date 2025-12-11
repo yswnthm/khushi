@@ -5,7 +5,7 @@ import { WorkCard } from './WorkCard';
 
 export const WorkPictures: React.FC = () => {
     return (
-        <SectionWrapper id="work-photos" pageNumber="03" bgText="GALLERY">
+        <SectionWrapper id="work-photos" pageNumber="04" bgText="GALLERY">
             <div className="flex flex-col space-y-16">
                 <Reveal width="100%">
                     <div className="relative">

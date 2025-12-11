@@ -4,7 +4,7 @@ import { Reveal } from './Reveal';
 
 export const Approach: React.FC = () => {
     return (
-        <SectionWrapper id="approach" pageNumber="06" bgText="PROCESS">
+        <SectionWrapper id="approach" pageNumber="07" bgText="CRAFT">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center min-h-[60vh]">
                 <div className="order-2 md:order-1 space-y-12 pr-0 md:pr-12">
                     <Reveal delay={200}>

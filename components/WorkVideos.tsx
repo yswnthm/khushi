@@ -5,7 +5,7 @@ import { VideoCard } from './VideoCard';
 
 export const WorkVideos: React.FC = () => {
     return (
-        <SectionWrapper id="work-videos" pageNumber="04" bgText="MOTION">
+        <SectionWrapper id="work-videos" pageNumber="05" bgText="MOTION">
             <div className="flex flex-col space-y-16">
                 <Reveal width="100%">
                     <div className="relative text-right w-full">
