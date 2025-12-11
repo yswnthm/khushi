@@ -1,62 +1,75 @@
 import React from 'react';
 import { SectionWrapper } from './SectionWrapper';
 import { Reveal } from './Reveal';
-import { Instagram, Mail, MapPin } from 'lucide-react';
+import { Instagram, Mail, MapPin, ArrowUpRight } from 'lucide-react';
 
 export const Contact: React.FC = () => {
     return (
         <SectionWrapper id="contact" pageNumber="07" bgText="CONTACT">
-            <div className="flex flex-col md:flex-row h-full items-center justify-between gap-16 py-12">
+            <div className="flex flex-col items-center justify-center py-24 md:py-32 space-y-16">
 
-                <div className="order-2 md:order-1 relative w-full md:w-auto">
-                    <Reveal>
-                        <h2 className="font-serif text-5xl md:text-7xl leading-tight text-slate-blue opacity-90">
-                            Something<br />
-                            <span className="font-script text-6xl md:text-8xl text-warm-taupe md:ml-12 block mt-2">Else</span>
+                <Reveal>
+                    <div className="text-center relative">
+                        <h2 className="font-serif text-[12vw] leading-none text-slate-blue opacity-90 select-none">
+                            COLLABORATE
                         </h2>
-                        <p className="font-sans text-lg text-slate-600 mt-8 max-w-md leading-relaxed">
-                            Let's create something unique together. Open for freelance opportunities and collaborations.
-                        </p>
-                    </Reveal>
-                </div>
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-5deg] mix-blend-multiply">
+                            <span className="font-script text-6xl md:text-8xl text-warm-taupe block whitespace-nowrap">
+                                Let's Talk
+                            </span>
+                        </div>
+                    </div>
+                </Reveal>
 
-                <div className="order-1 md:order-2 w-full md:w-auto flex flex-col space-y-8 md:space-y-12">
+                <div className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 px-8">
                     <Reveal delay={200}>
-                        <a href="mailto:hello@example.com" className="group flex items-center space-x-8 hover:translate-x-4 transition-transform duration-500">
-                            <div className="p-3 border-b border-warm-taupe/20 group-hover:border-warm-taupe transition-colors duration-500">
-                                <Mail className="w-5 h-5 text-slate-blue group-hover:text-warm-taupe transition-colors" />
+                        <a href="mailto:hello@example.com" className="flex flex-col items-center group text-center space-y-4">
+                            <div className="w-12 h-12 rounded-full border border-slate-blue/20 flex items-center justify-center group-hover:bg-slate-blue group-hover:border-transparent transition-all duration-300">
+                                <Mail className="w-5 h-5 text-slate-blue group-hover:text-white transition-colors" />
                             </div>
-                            <div className="flex flex-col">
-                                <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-slate-400 mb-1">Email</span>
-                                <span className="font-serif text-2xl md:text-3xl text-slate-blue">hello@example.com</span>
+                            <div>
+                                <h4 className="font-sans text-xs font-bold tracking-[0.2em] text-slate-400 uppercase mb-2">Inquiries</h4>
+                                <span className="font-serif text-xl md:text-2xl text-slate-blue group-hover:text-warm-taupe transition-colors">hello@example.com</span>
                             </div>
                         </a>
-                    </Reveal>
-
-                    <Reveal delay={300}>
-                        <div className="group flex items-center space-x-8 hover:translate-x-4 transition-transform duration-500">
-                            <div className="p-3 border-b border-warm-taupe/20 group-hover:border-warm-taupe transition-colors duration-500">
-                                <MapPin className="w-5 h-5 text-slate-blue group-hover:text-warm-taupe transition-colors" />
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-slate-400 mb-1">Based In</span>
-                                <span className="font-serif text-2xl md:text-3xl text-slate-blue">Location, City</span>
-                            </div>
-                        </div>
                     </Reveal>
 
                     <Reveal delay={400}>
-                        <a href="#" className="group flex items-center space-x-8 hover:translate-x-4 transition-transform duration-500">
-                            <div className="p-3 border-b border-warm-taupe/20 group-hover:border-warm-taupe transition-colors duration-500">
-                                <Instagram className="w-5 h-5 text-slate-blue group-hover:text-warm-taupe transition-colors" />
+                        <a href="#" className="flex flex-col items-center group text-center space-y-4">
+                            <div className="w-12 h-12 rounded-full border border-slate-blue/20 flex items-center justify-center group-hover:bg-slate-blue group-hover:border-transparent transition-all duration-300">
+                                <MapPin className="w-5 h-5 text-slate-blue group-hover:text-white transition-colors" />
                             </div>
-                            <div className="flex flex-col">
-                                <span className="font-sans text-[10px] uppercase tracking-[0.2em] text-slate-400 mb-1">Social</span>
-                                <span className="font-serif text-2xl md:text-3xl text-slate-blue">@username</span>
+                            <div>
+                                <h4 className="font-sans text-xs font-bold tracking-[0.2em] text-slate-400 uppercase mb-2">Studio</h4>
+                                <span className="font-serif text-xl md:text-2xl text-slate-blue group-hover:text-warm-taupe transition-colors">Mumbai, India</span>
+                            </div>
+                        </a>
+                    </Reveal>
+
+                    <Reveal delay={600}>
+                        <a href="#" className="flex flex-col items-center group text-center space-y-4">
+                            <div className="w-12 h-12 rounded-full border border-slate-blue/20 flex items-center justify-center group-hover:bg-slate-blue group-hover:border-transparent transition-all duration-300">
+                                <Instagram className="w-5 h-5 text-slate-blue group-hover:text-white transition-colors" />
+                            </div>
+                            <div>
+                                <h4 className="font-sans text-xs font-bold tracking-[0.2em] text-slate-400 uppercase mb-2">Follow</h4>
+                                <div className="flex items-center space-x-2 justify-center">
+                                    <span className="font-serif text-xl md:text-2xl text-slate-blue group-hover:text-warm-taupe transition-colors">@khushi.ugc</span>
+                                    <ArrowUpRight className="w-4 h-4 text-warm-taupe opacity-0 group-hover:opacity-100 transition-opacity -translate-y-1 translate-x-1" />
+                                </div>
                             </div>
                         </a>
                     </Reveal>
                 </div>
+
+                {/* Copyright / Footer Note */}
+                <Reveal delay={800}>
+                    <div className="border-t border-slate-blue/10 w-full pt-8 mt-12 text-center">
+                        <p className="font-sans text-[10px] text-slate-blue/40 tracking-widest uppercase">
+                            © {new Date().getFullYear()} Khushi Portfolio. All Rights Reserved.
+                        </p>
+                    </div>
+                </Reveal>
 
             </div>
         </SectionWrapper>

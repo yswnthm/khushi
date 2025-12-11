@@ -1,7 +1,7 @@
 import React from 'react';
 import { SectionWrapper } from './SectionWrapper';
 import { Reveal } from './Reveal';
-import { Instagram, Mail, ArrowDown } from 'lucide-react';
+import { ArrowDown, Instagram, Mail } from 'lucide-react';
 
 export const Hero: React.FC = () => {
     const images = [
@@ -21,88 +21,89 @@ export const Hero: React.FC = () => {
     };
 
     return (
-        <SectionWrapper id="hero" pageNumber="01" className="items-center justify-center">
-            <div className="relative z-10 w-full h-full flex flex-col md:flex-row items-center justify-center md:justify-between px-4 md:px-12 lg:px-24">
+        <SectionWrapper id="hero" pageNumber="01" className="items-center justify-center overflow-hidden">
+            <div className="relative w-full h-full flex flex-col items-center justify-center">
 
-                {/* Decorative Background Text (Name) - Subtle & Large */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none select-none mix-blend-multiply opacity-[0.03]">
-                    <span className="font-serif text-[15vw] leading-none text-slate-blue whitespace-nowrap tracking-tight">
-                        KHUSHI
-                    </span>
-                </div>
-
-                {/* Left Content: Text */}
-                <div className="relative flex flex-col items-center md:items-start text-center md:text-left space-y-6 md:space-y-8 z-20 md:w-1/2">
-                    <Reveal delay={200} direction="none">
-                        <div className="relative inline-block">
-                            <h2 className="font-script text-6xl md:text-8xl text-warm-taupe/90 rotate-[-3deg] mb-2 relative z-10">
-                                UGC Portfolio
-                            </h2>
-                            <div className="absolute -bottom-2 -right-4 w-12 h-12 bg-warm-taupe/20 rounded-full blur-xl -z-10"></div>
-                        </div>
-                    </Reveal>
-
-                    <Reveal delay={400}>
-                        <h1 className="font-serif text-4xl md:text-6xl tracking-wide uppercase text-slate-blue font-light leading-tight">
-                            Khushi
+                {/* Main Heading Layer - Behind Image */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full text-center">
+                    <Reveal delay={200}>
+                        <h1 className="font-serif text-[18vw] md:text-[22vw] leading-none text-slate-blue/5 tracking-tighter opacity-0 animate-fade-in select-none">
+                            KHUSHI
                         </h1>
                     </Reveal>
-
-                    <Reveal delay={600}>
-                        <p className="text-slate-blue/70 max-w-md text-lg md:text-xl font-light">
-                            Creating authentic stories that resonate.
-                            <span className="italic block mt-1">Let's bring your brand to life.</span>
-                        </p>
-                    </Reveal>
-
-                    <Reveal delay={800}>
-                        <div className="flex items-center space-x-6 text-icon-blue/80 pt-4">
-                            <a href="#" target="_blank" rel="noopener noreferrer" className="group flex items-center space-x-2 transition-all duration-300 hover:text-warm-taupe">
-                                <span className="transition-all duration-300">
-                                    <Instagram className="w-5 h-5 stroke-[1.5]" />
-                                </span>
-                                <span className="text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300 hidden md:inline-block">Instagram</span>
-                            </a>
-                            <a href="mailto:hello@example.com" className="group flex items-center space-x-2 transition-all duration-300 hover:text-warm-taupe">
-                                <span className="transition-all duration-300">
-                                    <Mail className="w-5 h-5 stroke-[1.5]" />
-                                </span>
-                                <span className="text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300 hidden md:inline-block">Email Me</span>
-                            </a>
-                        </div>
-                    </Reveal>
                 </div>
 
-                {/* Right Content: Image */}
-                <div className="relative mt-12 md:mt-0 md:w-5/12 z-20 flex justify-center md:justify-end">
-                    <Reveal delay={500} direction="none">
-                        <div className="relative w-64 md:w-80 lg:w-[400px] aspect-[3/4]">
-                            {/* Decorative Frame */}
-                            <div className="absolute inset-0 border border-slate-blue/20 translate-x-3 translate-y-3 md:translate-x-5 md:translate-y-5"></div>
+                {/* Central Focus */}
+                <div className="relative z-10 flex flex-col items-center">
+                    {/* Floating Script Title */}
+                    <div className="absolute -top-16 md:-top-24 right-0 md:-right-12 z-30 mix-blend-multiply pointer-events-none">
+                        <Reveal delay={800} direction="none">
+                            <span className="font-script text-6xl md:text-8xl text-icon-blue rotate-12 block drop-shadow-sm">
+                                Content Creator
+                            </span>
+                        </Reveal>
+                    </div>
 
-                            {/* Image Container */}
-                            <div
-                                className="relative w-full h-full overflow-hidden bg-white shadow-xl rotate-[2deg] hover:rotate-0 transition-transform duration-700 ease-out cursor-pointer"
-                                onClick={handleImageClick}
-                            >
+                    {/* Image Container */}
+                    <Reveal delay={400} direction="none">
+                        <div
+                            className="relative w-[300px] md:w-[450px] aspect-[3/4] cursor-pointer group"
+                            onClick={handleImageClick}
+                        >
+                            {/* Frame Border */}
+                            <div className="absolute inset-0 border-[1px] border-slate-blue/20 scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"></div>
+
+                            {/* Image Mask/Reveal */}
+                            <div className="w-full h-full overflow-hidden relative bg-pastel-cloud">
                                 <img
                                     src={images[currentImageIndex]}
-                                    alt="Khushi"
-                                    className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-1000"
+                                    alt="Khushi Portrait"
+                                    className="w-full h-full object-cover animate-reveal scale-110 group-hover:scale-100 transition-transform duration-1000 grayscale-[20%] group-hover:grayscale-0"
                                 />
-                                {/* Overlay Gradient */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-slate-blue/10 to-transparent opacity-50 pointer-events-none"></div>
+                                <div className="absolute inset-0 bg-warm-taupe/10 mix-blend-overlay"></div>
                             </div>
                         </div>
                     </Reveal>
+
+                    {/* Lower Description */}
+                    <div className="absolute -bottom-20 md:-bottom-12 md:-left-24 max-w-xs text-center md:text-left z-20">
+                        <Reveal delay={1000}>
+                            <p className="font-sans text-sm md:text-base tracking-widest uppercase text-slate-blue/80 leading-relaxed bg-pastel-mist/80 backdrop-blur-sm p-4 md:p-0">
+                                Curating aesthetic visuals & <br />
+                                <span className="text-warm-taupe font-semibold">authentic storytelling</span>
+                            </p>
+                        </Reveal>
+                    </div>
                 </div>
 
-
-                {/* Scroll Down Indicator */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float cursor-pointer z-30 opacity-70 hover:opacity-100 transition-opacity" onClick={scrollToAbout}>
-                    <ArrowDown className="w-6 h-6 text-slate-blue" />
+                {/* Social Sidebar */}
+                <div className="absolute left-8 bottom-12 hidden md:flex flex-col space-y-6 z-30">
+                    <Reveal delay={1200}>
+                        <div className="flex flex-col space-y-4 text-slate-blue/60">
+                            <a href="mailto:hello@example.com" className="hover:text-icon-blue transition-colors duration-300">
+                                <Mail className="w-5 h-5" />
+                            </a>
+                            <a href="#" target="_blank" className="hover:text-icon-blue transition-colors duration-300">
+                                <Instagram className="w-5 h-5" />
+                            </a>
+                        </div>
+                        {/* Vertical Decoration Line */}
+                        <div className="w-[1px] h-16 bg-slate-blue/20 mx-auto mt-4"></div>
+                    </Reveal>
                 </div>
-            </div >
-        </SectionWrapper >
+
+                {/* Scroll Indicator */}
+                <div
+                    onClick={scrollToAbout}
+                    className="absolute bottom-8 right-8 cursor-pointer group z-30 hidden md:flex items-center space-x-2"
+                >
+                    <Reveal delay={1400}>
+                        <span className="text-xs uppercase tracking-[0.2em] text-slate-blue/50 group-hover:text-slate-blue transition-colors duration-300">Scroll</span>
+                        <ArrowDown className="w-4 h-4 text-slate-blue/50 group-hover:translate-y-1 transition-all duration-300" />
+                    </Reveal>
+                </div>
+
+            </div>
+        </SectionWrapper>
     );
 };
