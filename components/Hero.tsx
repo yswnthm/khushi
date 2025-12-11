@@ -93,7 +93,7 @@ export const Hero: React.FC = () => {
                 </div>
                 <div className="absolute bottom-8 left-8 md:bottom-12 md:left-16 pointer-events-none z-50">
                     <span className="text-warm-taupe font-sans text-[10px] md:text-xs tracking-[0.2em] opacity-60 uppercase">
-                        @kay.life173
+                        KHUSHI
                     </span>
                 </div>
 

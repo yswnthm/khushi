@@ -8,16 +8,16 @@ interface SectionWrapperProps {
   className?: string;
 }
 
-export const SectionWrapper: React.FC<SectionWrapperProps> = ({ 
-  children, 
-  id, 
-  pageNumber, 
+export const SectionWrapper: React.FC<SectionWrapperProps> = ({
+  children,
+  id,
+  pageNumber,
   bgText,
   className = ""
 }) => {
   return (
-    <section 
-      id={id} 
+    <section
+      id={id}
       className={`relative min-h-screen w-full flex flex-col justify-center px-6 md:px-24 py-24 overflow-hidden ${className}`}
     >
       {/* Background Decorative Text - Ultra Light */}
@@ -38,10 +38,10 @@ export const SectionWrapper: React.FC<SectionWrapperProps> = ({
       <div className="absolute bottom-8 right-8 md:bottom-12 md:right-16 flex flex-col items-end pointer-events-none z-20">
         <span className="font-serif text-3xl md:text-4xl text-warm-taupe opacity-40">{pageNumber}</span>
       </div>
-      
+
       <div className="absolute bottom-8 left-8 md:bottom-12 md:left-16 pointer-events-none z-20">
         <span className="text-warm-taupe font-sans text-[10px] md:text-xs tracking-[0.2em] opacity-60 uppercase">
-          @kay.life173
+          KHUSHI
         </span>
       </div>
     </section>

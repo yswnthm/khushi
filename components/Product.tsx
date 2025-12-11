@@ -54,8 +54,8 @@ export const Product: React.FC = () => {
                     <div className="absolute -bottom-20 md:-bottom-12 md:-left-24 max-w-xs text-center md:text-left z-20">
                         <Reveal delay={600}>
                             <p className="font-sans text-sm md:text-base tracking-widest uppercase text-slate-blue/80 leading-relaxed bg-pastel-mist/80 backdrop-blur-sm p-4 md:p-0">
-                                Curating aesthetic visuals & <br />
-                                <span className="text-warm-taupe font-semibold">authentic storytelling</span>
+                                ~ KHUSHI GARG <br />
+                                <span className="text-warm-taupe font-semibold">ugc content creator</span>
                             </p>
                         </Reveal>
                     </div>
