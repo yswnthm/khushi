@@ -142,43 +142,65 @@ export const Hero: React.FC = () => {
                             </div>
                         </Reveal>
 
-                        {/* Lower Description */}
-                        <div className="absolute -bottom-20 md:-bottom-12 md:-left-24 max-w-xs text-center md:text-left z-20">
-                            <Reveal delay={1000}>
-                                <p className="font-sans text-sm md:text-base tracking-widest uppercase text-slate-blue/80 leading-relaxed bg-pastel-mist/80 backdrop-blur-sm p-4 md:p-0">
-                                    Curating aesthetic visuals & <br />
-                                    <span className="text-warm-taupe font-semibold">authentic storytelling</span>
-                                </p>
+                        {/* Lower Description - Only visible when image appears */}
+                        {imageOpacity > 0 && (
+                            <div
+                                className="absolute -bottom-20 md:-bottom-12 md:-left-24 max-w-xs text-center md:text-left z-20"
+                                style={{
+                                    opacity: imageOpacity,
+                                    transition: 'opacity 0.3s ease-out'
+                                }}
+                            >
+                                <Reveal delay={1000}>
+                                    <p className="font-sans text-sm md:text-base tracking-widest uppercase text-slate-blue/80 leading-relaxed bg-pastel-mist/80 backdrop-blur-sm p-4 md:p-0">
+                                        Curating aesthetic visuals & <br />
+                                        <span className="text-warm-taupe font-semibold">authentic storytelling</span>
+                                    </p>
+                                </Reveal>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Social Sidebar - Only visible when image appears */}
+                    {imageOpacity > 0 && (
+                        <div
+                            className="absolute left-8 bottom-12 hidden md:flex flex-col space-y-6 z-30"
+                            style={{
+                                opacity: imageOpacity,
+                                transition: 'opacity 0.3s ease-out'
+                            }}
+                        >
+                            <Reveal delay={1200}>
+                                <div className="flex flex-col space-y-4 text-slate-blue/60">
+                                    <a href="mailto:hello@example.com" className="hover:text-icon-blue transition-colors duration-300">
+                                        <Mail className="w-5 h-5" />
+                                    </a>
+                                    <a href="#" target="_blank" className="hover:text-icon-blue transition-colors duration-300">
+                                        <Instagram className="w-5 h-5" />
+                                    </a>
+                                </div>
+                                {/* Vertical Decoration Line */}
+                                <div className="w-[1px] h-16 bg-slate-blue/20 mx-auto mt-4"></div>
                             </Reveal>
                         </div>
-                    </div>
+                    )}
 
-                    {/* Social Sidebar */}
-                    <div className="absolute left-8 bottom-12 hidden md:flex flex-col space-y-6 z-30">
-                        <Reveal delay={1200}>
-                            <div className="flex flex-col space-y-4 text-slate-blue/60">
-                                <a href="mailto:hello@example.com" className="hover:text-icon-blue transition-colors duration-300">
-                                    <Mail className="w-5 h-5" />
-                                </a>
-                                <a href="#" target="_blank" className="hover:text-icon-blue transition-colors duration-300">
-                                    <Instagram className="w-5 h-5" />
-                                </a>
-                            </div>
-                            {/* Vertical Decoration Line */}
-                            <div className="w-[1px] h-16 bg-slate-blue/20 mx-auto mt-4"></div>
-                        </Reveal>
-                    </div>
-
-                    {/* Scroll Indicator */}
-                    <div
-                        onClick={scrollToAbout}
-                        className="absolute bottom-8 right-8 cursor-pointer group z-30 hidden md:flex items-center space-x-2"
-                    >
-                        <Reveal delay={1400}>
-                            <span className="text-xs uppercase tracking-[0.2em] text-slate-blue/50 group-hover:text-slate-blue transition-colors duration-300">Scroll</span>
-                            <ArrowDown className="w-4 h-4 text-slate-blue/50 group-hover:translate-y-1 transition-all duration-300" />
-                        </Reveal>
-                    </div>
+                    {/* Scroll Indicator - Only visible when image appears */}
+                    {imageOpacity > 0 && (
+                        <div
+                            onClick={scrollToAbout}
+                            className="absolute bottom-8 right-8 cursor-pointer group z-30 hidden md:flex items-center space-x-2"
+                            style={{
+                                opacity: imageOpacity,
+                                transition: 'opacity 0.3s ease-out'
+                            }}
+                        >
+                            <Reveal delay={1400}>
+                                <span className="text-xs uppercase tracking-[0.2em] text-slate-blue/50 group-hover:text-slate-blue transition-colors duration-300">Scroll</span>
+                                <ArrowDown className="w-4 h-4 text-slate-blue/50 group-hover:translate-y-1 transition-all duration-300" />
+                            </Reveal>
+                        </div>
+                    )}
 
                 </div>
             </SectionWrapper>
