@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { SectionWrapper } from './SectionWrapper';
 import { Reveal } from './Reveal';
 import { ArrowDown, Instagram, Mail } from 'lucide-react';
@@ -11,15 +11,58 @@ export const Hero: React.FC = () => {
     ];
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
-    const [scrollY, setScrollY] = useState(0);
+
+    // Virtual scroll progress (0 to 1) - drives the intro animation
+    const [scrollProgress, setScrollProgress] = useState(0);
+    const [isIntroComplete, setIsIntroComplete] = useState(false);
+    const heroRef = useRef<HTMLDivElement>(null);
+
+    // Threshold for animation completion (in virtual scroll units)
+    const SCROLL_THRESHOLD = 300; // Virtual "pixels" needed to complete intro
+
+    const handleWheel = useCallback((e: WheelEvent) => {
+        if (isIntroComplete) return; // Normal scrolling after intro
+
+        // Prevent page scroll during intro
+        e.preventDefault();
+
+        // Accumulate scroll delta to drive animation
+        setScrollProgress(prev => {
+            const newProgress = Math.max(0, Math.min(prev + e.deltaY, SCROLL_THRESHOLD));
+
+            // Check if intro is complete
+            if (newProgress >= SCROLL_THRESHOLD) {
+                setIsIntroComplete(true);
+            }
+
+            return newProgress;
+        });
+    }, [isIntroComplete]);
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrollY(window.scrollY);
+        const heroElement = heroRef.current;
+        if (!heroElement) return;
+
+        // Add wheel listener with passive: false to allow preventDefault
+        heroElement.addEventListener('wheel', handleWheel, { passive: false });
+
+        return () => {
+            heroElement.removeEventListener('wheel', handleWheel);
         };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    }, [handleWheel]);
+
+    // Lock body scroll during intro
+    useEffect(() => {
+        if (!isIntroComplete) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isIntroComplete]);
 
     const handleImageClick = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -30,102 +73,116 @@ export const Hero: React.FC = () => {
         element?.scrollIntoView({ behavior: 'smooth' });
     };
 
+    // Calculate animation values based on virtual scroll progress
+    const progress = scrollProgress / SCROLL_THRESHOLD; // 0 to 1
+    const gargOffset = progress * 150; // Move up to 150px
+    const khushiOffset = progress * 60; // Move up to 60px
+    const imageOpacity = progress;
+    const imageTranslateY = (1 - progress) * 50; // Start at 50px, end at 0
+
     return (
-        <SectionWrapper id="hero" pageNumber="01" className="items-center justify-center overflow-hidden">
-            <div className="relative w-full h-full flex flex-col items-center justify-center">
+        <div ref={heroRef} className="relative">
+            <SectionWrapper id="hero" pageNumber="01" className="items-center justify-center overflow-hidden">
+                <div className="relative w-full h-full flex flex-col items-center justify-center">
 
-                {/* Main Heading Layer - Behind Image */}
-                <div
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full text-center flex flex-col items-center justify-center"
-                    style={{ transform: `translate(-50%, calc(-50% - ${scrollY * 0.2}px))` }}
-                >
-                    <Reveal delay={200}>
-                        <h1 className={`font-serif text-[18vw] md:text-[22vw] leading-none ${isHovered ? 'text-slate-blue/5' : 'text-[#D8C8B0]'} transition-colors duration-700 opacity-0 animate-fade-in select-none relative`}>
-                            KHUSHI
-                            {/* Cursive Overlay */}
-                            <span
-                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-script text-[10vw] md:text-[8vw] text-warm-taupe/90 whitespace-nowrap z-10"
-                                style={{
-                                    transform: `translate(-50%, calc(-50% - ${scrollY * 0.5}px))`
-                                }}
-                            >
-                                Garg
-                            </span>
-                        </h1>
-                    </Reveal>
-                </div>
-
-
-                {/* Central Focus */}
-                <div className="relative z-10 flex flex-col items-center">
-
-
-                    {/* Image Container */}
-                    <Reveal delay={400} direction="none">
-                        <div
-                            className="relative w-[300px] md:w-[450px] aspect-[3/4] cursor-pointer group"
-                            onClick={handleImageClick}
-                            onMouseEnter={() => setIsHovered(true)}
-                            onMouseLeave={() => setIsHovered(false)}
-                            style={{
-                                opacity: Math.min(scrollY / 200, 1),
-                                transform: `translateY(${Math.max(0, 50 - scrollY / 2)}px)`
-                            }}
-                        >
-                            {/* Frame Border */}
-                            <div className="absolute inset-0 border-[1px] border-slate-blue/20 scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"></div>
-
-                            {/* Image Mask/Reveal */}
-                            <div className="w-full h-full overflow-hidden relative bg-pastel-cloud">
-                                <img
-                                    src={images[currentImageIndex]}
-                                    alt="Khushi Portrait"
-                                    className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-all duration-1000 grayscale-[20%] group-hover:grayscale-0 opacity-70 group-hover:opacity-100"
-                                />
-                                <div className="absolute inset-0 bg-warm-taupe/10 mix-blend-overlay"></div>
-                            </div>
-                        </div>
-                    </Reveal>
-
-                    {/* Lower Description */}
-                    <div className="absolute -bottom-20 md:-bottom-12 md:-left-24 max-w-xs text-center md:text-left z-20">
-                        <Reveal delay={1000}>
-                            <p className="font-sans text-sm md:text-base tracking-widest uppercase text-slate-blue/80 leading-relaxed bg-pastel-mist/80 backdrop-blur-sm p-4 md:p-0">
-                                Curating aesthetic visuals & <br />
-                                <span className="text-warm-taupe font-semibold">authentic storytelling</span>
-                            </p>
+                    {/* Main Heading Layer - Behind Image */}
+                    <div
+                        className="absolute top-1/2 left-1/2 z-0 w-full text-center flex flex-col items-center justify-center"
+                        style={{
+                            transform: `translate(-50%, calc(-50% - ${khushiOffset}px))`,
+                            transition: 'transform 0.15s ease-out'
+                        }}
+                    >
+                        <Reveal delay={200}>
+                            <h1 className={`font-serif text-[18vw] md:text-[22vw] leading-none ${isHovered ? 'text-slate-blue/5' : 'text-[#D8C8B0]'} transition-colors duration-700 opacity-0 animate-fade-in select-none relative`}>
+                                KHUSHI
+                                {/* Cursive Overlay */}
+                                <span
+                                    className="absolute top-1/2 left-1/2 font-script text-[10vw] md:text-[8vw] text-warm-taupe/90 whitespace-nowrap z-10"
+                                    style={{
+                                        transform: `translate(-50%, calc(-50% - ${gargOffset}px))`,
+                                        transition: 'transform 0.15s ease-out'
+                                    }}
+                                >
+                                    Garg
+                                </span>
+                            </h1>
                         </Reveal>
                     </div>
-                </div>
 
-                {/* Social Sidebar */}
-                <div className="absolute left-8 bottom-12 hidden md:flex flex-col space-y-6 z-30">
-                    <Reveal delay={1200}>
-                        <div className="flex flex-col space-y-4 text-slate-blue/60">
-                            <a href="mailto:hello@example.com" className="hover:text-icon-blue transition-colors duration-300">
-                                <Mail className="w-5 h-5" />
-                            </a>
-                            <a href="#" target="_blank" className="hover:text-icon-blue transition-colors duration-300">
-                                <Instagram className="w-5 h-5" />
-                            </a>
+
+                    {/* Central Focus */}
+                    <div className="relative z-10 flex flex-col items-center">
+
+
+                        {/* Image Container */}
+                        <Reveal delay={400} direction="none">
+                            <div
+                                className="relative w-[300px] md:w-[450px] aspect-[3/4] cursor-pointer group"
+                                onClick={handleImageClick}
+                                onMouseEnter={() => setIsHovered(true)}
+                                onMouseLeave={() => setIsHovered(false)}
+                                style={{
+                                    opacity: imageOpacity,
+                                    transform: `translateY(${imageTranslateY}px)`,
+                                    transition: 'opacity 0.15s ease-out, transform 0.15s ease-out'
+                                }}
+                            >
+                                {/* Frame Border */}
+                                <div className="absolute inset-0 border-[1px] border-slate-blue/20 scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"></div>
+
+                                {/* Image Mask/Reveal */}
+                                <div className="w-full h-full overflow-hidden relative bg-pastel-cloud">
+                                    <img
+                                        src={images[currentImageIndex]}
+                                        alt="Khushi Portrait"
+                                        className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-all duration-1000 grayscale-[20%] group-hover:grayscale-0 opacity-70 group-hover:opacity-100"
+                                    />
+                                    <div className="absolute inset-0 bg-warm-taupe/10 mix-blend-overlay"></div>
+                                </div>
+                            </div>
+                        </Reveal>
+
+                        {/* Lower Description */}
+                        <div className="absolute -bottom-20 md:-bottom-12 md:-left-24 max-w-xs text-center md:text-left z-20">
+                            <Reveal delay={1000}>
+                                <p className="font-sans text-sm md:text-base tracking-widest uppercase text-slate-blue/80 leading-relaxed bg-pastel-mist/80 backdrop-blur-sm p-4 md:p-0">
+                                    Curating aesthetic visuals & <br />
+                                    <span className="text-warm-taupe font-semibold">authentic storytelling</span>
+                                </p>
+                            </Reveal>
                         </div>
-                        {/* Vertical Decoration Line */}
-                        <div className="w-[1px] h-16 bg-slate-blue/20 mx-auto mt-4"></div>
-                    </Reveal>
-                </div>
+                    </div>
 
-                {/* Scroll Indicator */}
-                <div
-                    onClick={scrollToAbout}
-                    className="absolute bottom-8 right-8 cursor-pointer group z-30 hidden md:flex items-center space-x-2"
-                >
-                    <Reveal delay={1400}>
-                        <span className="text-xs uppercase tracking-[0.2em] text-slate-blue/50 group-hover:text-slate-blue transition-colors duration-300">Scroll</span>
-                        <ArrowDown className="w-4 h-4 text-slate-blue/50 group-hover:translate-y-1 transition-all duration-300" />
-                    </Reveal>
-                </div>
+                    {/* Social Sidebar */}
+                    <div className="absolute left-8 bottom-12 hidden md:flex flex-col space-y-6 z-30">
+                        <Reveal delay={1200}>
+                            <div className="flex flex-col space-y-4 text-slate-blue/60">
+                                <a href="mailto:hello@example.com" className="hover:text-icon-blue transition-colors duration-300">
+                                    <Mail className="w-5 h-5" />
+                                </a>
+                                <a href="#" target="_blank" className="hover:text-icon-blue transition-colors duration-300">
+                                    <Instagram className="w-5 h-5" />
+                                </a>
+                            </div>
+                            {/* Vertical Decoration Line */}
+                            <div className="w-[1px] h-16 bg-slate-blue/20 mx-auto mt-4"></div>
+                        </Reveal>
+                    </div>
 
-            </div>
-        </SectionWrapper>
+                    {/* Scroll Indicator */}
+                    <div
+                        onClick={scrollToAbout}
+                        className="absolute bottom-8 right-8 cursor-pointer group z-30 hidden md:flex items-center space-x-2"
+                    >
+                        <Reveal delay={1400}>
+                            <span className="text-xs uppercase tracking-[0.2em] text-slate-blue/50 group-hover:text-slate-blue transition-colors duration-300">Scroll</span>
+                            <ArrowDown className="w-4 h-4 text-slate-blue/50 group-hover:translate-y-1 transition-all duration-300" />
+                        </Reveal>
+                    </div>
+
+                </div>
+            </SectionWrapper>
+        </div>
     );
 };
