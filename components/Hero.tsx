@@ -10,6 +10,7 @@ export const Hero: React.FC = () => {
         'images/product3.png'
     ];
     const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+    const [isHovered, setIsHovered] = React.useState(false);
 
     const handleImageClick = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -27,7 +28,7 @@ export const Hero: React.FC = () => {
                 {/* Main Heading Layer - Behind Image */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full text-center">
                     <Reveal delay={200}>
-                        <h1 className="font-serif text-[18vw] md:text-[22vw] leading-none text-slate-blue/5 opacity-0 animate-fade-in select-none">
+                        <h1 className={`font-serif text-[18vw] md:text-[22vw] leading-none ${isHovered ? 'text-slate-blue/5' : 'text-slate-blue/20'} transition-colors duration-700 opacity-0 animate-fade-in select-none`}>
                             KHUSHI
                         </h1>
                     </Reveal>
@@ -42,6 +43,8 @@ export const Hero: React.FC = () => {
                         <div
                             className="relative w-[300px] md:w-[450px] aspect-[3/4] cursor-pointer group"
                             onClick={handleImageClick}
+                            onMouseEnter={() => setIsHovered(true)}
+                            onMouseLeave={() => setIsHovered(false)}
                         >
                             {/* Frame Border */}
                             <div className="absolute inset-0 border-[1px] border-slate-blue/20 scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"></div>
@@ -51,7 +54,7 @@ export const Hero: React.FC = () => {
                                 <img
                                     src={images[currentImageIndex]}
                                     alt="Khushi Portrait"
-                                    className="w-full h-full object-cover animate-reveal scale-110 group-hover:scale-100 transition-transform duration-1000 grayscale-[20%] group-hover:grayscale-0"
+                                    className="w-full h-full object-cover animate-reveal scale-110 group-hover:scale-100 transition-all duration-1000 grayscale-[20%] group-hover:grayscale-0 opacity-70 group-hover:opacity-100"
                                 />
                                 <div className="absolute inset-0 bg-warm-taupe/10 mix-blend-overlay"></div>
                             </div>
