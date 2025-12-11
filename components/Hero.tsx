@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
                 {/* Main Heading Layer - Behind Image */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full text-center">
                     <Reveal delay={200}>
-                        <h1 className="font-serif text-[18vw] md:text-[22vw] leading-none text-slate-blue/5 tracking-tighter opacity-0 animate-fade-in select-none">
+                        <h1 className="font-serif text-[18vw] md:text-[22vw] leading-none text-slate-blue/5 opacity-0 animate-fade-in select-none">
                             KHUSHI
                         </h1>
                     </Reveal>
