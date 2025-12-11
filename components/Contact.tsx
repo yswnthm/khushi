@@ -6,7 +6,7 @@ import { Instagram, Mail, MapPin, ArrowUpRight } from 'lucide-react';
 export const Contact: React.FC = () => {
     return (
         <SectionWrapper id="contact" pageNumber="08">
-            <div className="flex flex-col items-center justify-center py-24 md:py-32 space-y-16">
+            <div className="flex flex-col items-center justify-center pt-24 md:pt-32 pb-8 space-y-16">
 
                 <Reveal>
                     <div className="text-center relative flex flex-col items-center justify-center">
