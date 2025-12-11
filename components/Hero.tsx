@@ -18,7 +18,7 @@ export const Hero: React.FC = () => {
     const heroRef = useRef<HTMLDivElement>(null);
 
     // Threshold for animation completion (in virtual scroll units)
-    const SCROLL_THRESHOLD = 300; // Virtual "pixels" needed to complete intro
+    const SCROLL_THRESHOLD = 800; // Virtual "pixels" needed to complete intro - creates sticky effect
 
     const handleWheel = useCallback((e: WheelEvent) => {
         if (isIntroComplete) return; // Normal scrolling after intro
@@ -75,7 +75,7 @@ export const Hero: React.FC = () => {
 
     // Calculate animation values based on virtual scroll progress
     const progress = scrollProgress / SCROLL_THRESHOLD; // 0 to 1
-    const gargOffset = progress * 150; // Move up to 150px
+    const gargOffset = progress * 60; // Move up to 60px
     const khushiOffset = progress * 60; // Move up to 60px
     const imageOpacity = progress;
     const imageTranslateY = (1 - progress) * 50; // Start at 50px, end at 0
@@ -89,8 +89,7 @@ export const Hero: React.FC = () => {
                     <div
                         className="absolute top-1/2 left-1/2 z-0 w-full text-center flex flex-col items-center justify-center"
                         style={{
-                            transform: `translate(-50%, calc(-50% - ${khushiOffset}px))`,
-                            transition: 'transform 0.15s ease-out'
+                            transform: 'translate(-50%, -50%)',
                         }}
                     >
                         <Reveal delay={200}>
