@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { SectionWrapper } from './SectionWrapper';
 import { Reveal } from './Reveal';
 import { ArrowDown, Instagram, Mail } from 'lucide-react';
@@ -9,8 +9,17 @@ export const Hero: React.FC = () => {
         'images/product2.png',
         'images/product3.png'
     ];
-    const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
-    const [isHovered, setIsHovered] = React.useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+    const [scrollY, setScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrollY(window.scrollY);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const handleImageClick = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -26,13 +35,26 @@ export const Hero: React.FC = () => {
             <div className="relative w-full h-full flex flex-col items-center justify-center">
 
                 {/* Main Heading Layer - Behind Image */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full text-center">
+                <div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full text-center flex flex-col items-center justify-center"
+                    style={{ transform: `translate(-50%, calc(-50% - ${scrollY * 0.2}px))` }}
+                >
                     <Reveal delay={200}>
-                        <h1 className={`font-serif text-[18vw] md:text-[22vw] leading-none ${isHovered ? 'text-slate-blue/5' : 'text-[#D8C8B0]'} transition-colors duration-700 opacity-0 animate-fade-in select-none`}>
+                        <h1 className={`font-serif text-[18vw] md:text-[22vw] leading-none ${isHovered ? 'text-slate-blue/5' : 'text-[#D8C8B0]'} transition-colors duration-700 opacity-0 animate-fade-in select-none relative`}>
                             KHUSHI
+                            {/* Cursive Overlay */}
+                            <span
+                                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-script text-[10vw] md:text-[8vw] text-warm-taupe/90 whitespace-nowrap z-10"
+                                style={{
+                                    transform: `translate(-50%, calc(-50% - ${scrollY * 0.5}px))`
+                                }}
+                            >
+                                Garg
+                            </span>
                         </h1>
                     </Reveal>
                 </div>
+
 
                 {/* Central Focus */}
                 <div className="relative z-10 flex flex-col items-center">
@@ -45,6 +67,10 @@ export const Hero: React.FC = () => {
                             onClick={handleImageClick}
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
+                            style={{
+                                opacity: Math.min(scrollY / 200, 1),
+                                transform: `translateY(${Math.max(0, 50 - scrollY / 2)}px)`
+                            }}
                         >
                             {/* Frame Border */}
                             <div className="absolute inset-0 border-[1px] border-slate-blue/20 scale-105 group-hover:scale-110 transition-transform duration-700 ease-out"></div>
@@ -54,7 +80,7 @@ export const Hero: React.FC = () => {
                                 <img
                                     src={images[currentImageIndex]}
                                     alt="Khushi Portrait"
-                                    className="w-full h-full object-cover animate-reveal scale-110 group-hover:scale-100 transition-all duration-1000 grayscale-[20%] group-hover:grayscale-0 opacity-70 group-hover:opacity-100"
+                                    className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-all duration-1000 grayscale-[20%] group-hover:grayscale-0 opacity-70 group-hover:opacity-100"
                                 />
                                 <div className="absolute inset-0 bg-warm-taupe/10 mix-blend-overlay"></div>
                             </div>
