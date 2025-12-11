@@ -5,16 +5,16 @@ import { Instagram, Mail, MapPin, ArrowUpRight } from 'lucide-react';
 
 export const Contact: React.FC = () => {
     return (
-        <SectionWrapper id="contact" pageNumber="08" bgText="CONTACT">
+        <SectionWrapper id="contact" pageNumber="08">
             <div className="flex flex-col items-center justify-center py-24 md:py-32 space-y-16">
 
                 <Reveal>
-                    <div className="text-center relative">
-                        <h2 className="font-serif text-[12vw] leading-none text-slate-blue opacity-90 select-none">
+                    <div className="text-center relative flex flex-col items-center justify-center">
+                        <h2 className="font-serif text-[12vw] md:text-[14vw] leading-none text-[#D8C8B0] select-none relative">
                             COLLABORATE
                         </h2>
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-5deg] mix-blend-multiply">
-                            <span className="font-script text-6xl md:text-8xl text-warm-taupe block whitespace-nowrap">
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                            <span className="font-script text-[8vw] md:text-[6vw] text-warm-taupe/90 whitespace-nowrap">
                                 Let's Talk
                             </span>
                         </div>
